@@ -1,0 +1,8 @@
+[package]
+name = "rust"
+version = "0.1.0"
+authors = ["Artur Jorge <artur11jorge@gmail.com>"]
+
+[dependencies]
+rand = "0.4.6"
+text_io = "*"
