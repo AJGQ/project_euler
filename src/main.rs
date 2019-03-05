@@ -8,11 +8,13 @@ fn usqrt(n: u64) -> u64{
     else {return lc;}
 }
 */
+#[allow(dead_code)]
 
-mod problems {pub mod p001;}
-use problems::p001::p001;
+mod problems {pub mod p006;}
+use problems::p006::p006;
 
 fn main() {
-   println!("p001: {}", p001(10)); 
+    let res = p006(100);
+    println!("p006: {}", res); 
 }
 
