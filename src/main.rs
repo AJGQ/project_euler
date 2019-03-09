@@ -15,6 +15,6 @@ use problems::p006::p006;
 
 fn main() {
     let res = p006(100);
-    println!("p006: {}", res); 
+    println!("p006: {} ", res); 
 }
 

@@ -19,15 +19,14 @@
  * <=>
  * 11*(g*9091+h*910+i*100) = m*n
  * => {m = 11*m'}
- * 9 < m' < 91 and 99 < n < 1000 and 99999 < 11*m'*n < 1000000
+ * 9 < m' < 91 and 99 < n < 1000 and 11*m'*n == num
  * => 
- * 9 < m' < 91 and 99 < n < 1000 and 9090 < m'*n < 90910
+ * 9 < m' < 91 and 99 < n < 1000 and m'*n == num/11
  * =>
- * 9 < m' < 91 
+ * 9 < m' < 91 and num/11000 < m' < num/1089
  * =>
- * 9 < m' < 91 
- * =>
- * 9 < m' < 91 
+ * max(9, num/11000) < m' < min(91, num/1089)
+ *
  *
  *
  * 9091 is prime
@@ -38,7 +37,6 @@
  * is multiple of 2 or 5, but that doesn't 
  * help us, I think ...
  * 
- * m' = 83 => 99999/(11*m') < n < 1000000/(11*m') 
  */
 /*
 fn is_palindrome(n: i32) -> bool{
@@ -54,6 +52,8 @@ fn is_palindrome(n: i32) -> bool{
     true
 }
 */
+use std::cmp;
+
 pub fn p004() -> i32 {
     let mut num: i32;
 
@@ -61,9 +61,8 @@ pub fn p004() -> i32 {
         for h in 0..=9 {
             for i in 0..=9 {
                 num = 100001*(9-g)+10010*(9-h)+1100*(9-i);
-                for m in 10..=90 {
-                    let n = num/(m*11);
-                    if num%(m*11)==0 && 99<n && n<1000 {
+                for m in cmp::max(10,1+(num/11000))..cmp::min(91, num/1089) {
+                    if num%(m*11)==0 {
                         return num;
                     }
                 } 
